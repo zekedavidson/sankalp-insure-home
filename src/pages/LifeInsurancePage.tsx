@@ -1,0 +1,155 @@
+import { Link } from "react-router-dom";
+import { Shield, CheckCircle, ArrowRight, TrendingUp, Heart, BookOpen, AlertCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import Layout from "@/components/Layout";
+
+const lifePlans = [
+  {
+    insurer: "LIC of India",
+    plan: "Jeevan Anand",
+    type: "Endowment",
+    sumAssured: "₹25 Lakhs+",
+    term: "15–35 Years",
+    premium: "₹1,200/mo",
+    settlement: "98.35%",
+    features: ["Death + Survival Benefit", "Bonus accrual", "Loan facility"],
+    tag: "Most Popular",
+  },
+  {
+    insurer: "HDFC Life",
+    plan: "Click 2 Protect Super",
+    type: "Term Life",
+    sumAssured: "₹50 Lakhs+",
+    term: "10–40 Years",
+    premium: "₹650/mo",
+    settlement: "99.10%",
+    features: ["Pure protection", "Return of Premium option", "Critical illness add-on"],
+    tag: "High Coverage",
+  },
+  {
+    insurer: "SBI Life",
+    plan: "Smart Wealth Builder",
+    type: "ULIP",
+    sumAssured: "₹10 Lakhs+",
+    term: "10–30 Years",
+    premium: "₹2,500/mo",
+    settlement: "97.60%",
+    features: ["Market-linked returns", "Partial withdrawals after 5 yrs", "Fund switching"],
+    tag: "Investment + Protection",
+  },
+  {
+    insurer: "ICICI Prudential",
+    plan: "iProtect Smart",
+    type: "Term Life",
+    sumAssured: "₹1 Crore+",
+    term: "18–40 Years",
+    premium: "₹790/mo",
+    settlement: "98.50%",
+    features: ["Comprehensive coverage", "Accidental death benefit", "Waiver of premium"],
+    tag: null,
+  },
+];
+
+export default function LifeInsurancePage() {
+  return (
+    <Layout>
+      {/* Hero */}
+      <section className="gradient-hero py-14 text-primary-foreground">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center gap-2 text-gold text-sm mb-4">
+            <Shield className="w-4 h-4" />
+            <span>Life Insurance</span>
+          </div>
+          <h1 className="text-3xl lg:text-4xl font-bold mb-4">
+            Life Insurance Plans — <span className="text-gold">Protect Your Family's Future</span>
+          </h1>
+          <p className="text-primary-foreground/70 max-w-2xl mb-6">
+            Compare Term Life, Endowment, ULIP, and Whole Life plans from IRDAI-approved insurers. All plans displayed neutrally for your informed decision.
+          </p>
+          <Link to="/get-quote?type=life">
+            <Button className="gradient-gold text-navy font-bold border-0">
+              Get Life Insurance Quote <ArrowRight className="w-4 h-4 ml-1" />
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      {/* Commission Disclosure */}
+      <div className="bg-gold/10 border-b border-gold/30 py-3">
+        <div className="container mx-auto px-4 flex items-start gap-2">
+          <AlertCircle className="w-4 h-4 text-gold-dark mt-0.5 flex-shrink-0" />
+          <p className="text-xs text-foreground/70">
+            <strong>Commission Disclosure (IRDAI Compliance):</strong> Sankalp Insurance Brokers Pvt. Ltd. may receive brokerage/commission from insurers on policy purchase. 
+            This does not influence the plans shown. All plans are presented neutrally. Full commission details available on request as per IRDAI Circular No. IRDA/BRK/CIR/CMN/2013.
+          </p>
+        </div>
+      </div>
+
+      {/* Plans */}
+      <section className="py-12 bg-background">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold text-navy mb-2">Available Life Insurance Plans</h2>
+          <p className="text-muted-foreground text-sm mb-8">Plans listed in no particular order of preference. Claim settlement ratios sourced from IRDAI Annual Reports.</p>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {lifePlans.map((plan) => (
+              <Card key={plan.plan} className="border-navy/10 hover:border-gold/40 transition-all">
+                <CardHeader className="pb-3">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <p className="text-xs text-muted-foreground mb-1 font-medium">{plan.insurer}</p>
+                      <CardTitle className="text-lg text-navy">{plan.plan}</CardTitle>
+                      <Badge variant="secondary" className="mt-1 text-xs bg-muted text-navy">
+                        {plan.type}
+                      </Badge>
+                    </div>
+                    {plan.tag && (
+                      <Badge className="bg-gold/20 text-gold-dark border border-gold/40 text-xs">
+                        {plan.tag}
+                      </Badge>
+                    )}
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-3 gap-3 mb-4 bg-muted rounded-lg p-3">
+                    <div className="text-center">
+                      <p className="text-xs text-muted-foreground">Sum Assured</p>
+                      <p className="text-sm font-bold text-navy">{plan.sumAssured}</p>
+                    </div>
+                    <div className="text-center border-x border-border">
+                      <p className="text-xs text-muted-foreground">Premium</p>
+                      <p className="text-sm font-bold text-navy">{plan.premium}</p>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-xs text-muted-foreground">Claim Ratio</p>
+                      <p className="text-sm font-bold text-green-600">{plan.settlement}</p>
+                    </div>
+                  </div>
+                  <ul className="space-y-1.5 mb-4">
+                    {plan.features.map((f) => (
+                      <li key={f} className="flex items-center gap-2 text-xs text-foreground/70">
+                        <CheckCircle className="w-3.5 h-3.5 text-gold flex-shrink-0" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link to={`/get-quote?type=life&plan=${encodeURIComponent(plan.plan)}`}>
+                    <Button size="sm" className="w-full bg-navy text-primary-foreground hover:bg-navy-light">
+                      Get Quote for This Plan
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <p className="text-xs text-muted-foreground mt-6 text-center">
+            * Premiums are indicative and subject to underwriting. Plans displayed without ranking. Sankalp does not endorse any specific insurer.
+          </p>
+        </div>
+      </section>
+    </Layout>
+  );
+}
