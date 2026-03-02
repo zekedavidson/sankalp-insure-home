@@ -19,6 +19,12 @@ const whyUs = [
   { icon: CheckCircle, title: "End-to-End Support", desc: "From quotes to claims, we assist you at every step of your insurance journey." },
 ];
 
+const reviews = [
+  { rating: 5, name: "Rahul Sharma", role: "Business Owner", text: "Excellent service! The team helped me find the perfect health insurance for my family within minutes." },
+  { rating: 5, name: "Priya Desai", role: "IT Professional", text: "Sankalp Insurance made claiming my car insurance incredibly smooth and hassle-free. Highly recommended!" },
+  { rating: 5, name: "Amit Patel", role: "Frequent Traveler", text: "Great comparison tools. It was so easy to pick the right term life policy. Their transparent disclosure gives peace of mind." },
+];
+
 const faqCategories = ["General", "Car", "Bike", "Life"];
 
 const faqs: Record<string, { q: string; a: string }[]> = {
@@ -181,8 +187,36 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* Customer Speaks */}
       <section className="py-16 bg-background">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-navy mb-3">Customer Speaks</h2>
+            <p className="text-muted-foreground">Hear what our satisfied policyholders have to say</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {reviews.map((review, idx) => (
+              <Card key={idx} className="p-6 border-navy/10 hover:border-gold/40 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className={`w-4 h-4 ${i < review.rating ? "text-gold fill-gold" : "text-muted"}`} />
+                    ))}
+                  </div>
+                  <p className="text-sm text-foreground/80 leading-relaxed italic mb-6">"{review.text}"</p>
+                </div>
+                <div>
+                  <p className="font-bold text-navy text-sm">{review.name}</p>
+                  <p className="text-xs text-muted-foreground">{review.role}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 bg-muted">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold text-navy mb-3">Frequently Asked Questions About Insurance</h2>
