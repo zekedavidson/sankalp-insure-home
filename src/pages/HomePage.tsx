@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Shield, Car, CheckCircle, Lock, CreditCard, Award, ArrowRight, Star, Users, FileText } from "lucide-react";
+import { Shield, Car, CheckCircle, Lock, CreditCard, Award, ArrowRight, Star, Users, FileText, Heart, TrendingUp, Baby, PiggyBank, GraduationCap, Umbrella, BarChart2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -11,6 +11,17 @@ const trustBadges = [
   { icon: CreditCard, label: "PCI-DSS Compliant", sub: "Secure Payments" },
   { icon: Award, label: "IRDAI Licensed", sub: "Broker Reg. No. XXX" },
   { icon: Users, label: "10,000+ Policies", sub: "Issued & Counting" },
+];
+
+const quickLinks = [
+  { icon: Shield, label: "Term", sub: "Insurance", link: "/life-insurance" },
+  { icon: Heart, label: "Whole Life", sub: "Plans", link: "/life-insurance" },
+  { icon: TrendingUp, label: "ULIP", sub: "Plans", badge: "Growth", badgeColor: "bg-gold text-navy", link: "/life-insurance" },
+  { icon: Baby, label: "Child", sub: "Plans", link: "/life-insurance" },
+  { icon: PiggyBank, label: "Savings", sub: "Plans", link: "/life-insurance" },
+  { icon: Umbrella, label: "Endowment", sub: "Plans", link: "/life-insurance" },
+  { icon: Car, label: "Motor", sub: "Insurance", badge: "NEW", badgeColor: "bg-gold text-navy", link: "/motor-insurance" },
+  { icon: BarChart2, label: "Compare", sub: "Plans", link: "/" },
 ];
 
 const whyUs = [
@@ -66,7 +77,7 @@ export default function HomePage() {
   return (
     <Layout>
       {/* Hero */}
-      <section className="gradient-hero text-primary-foreground py-20 lg:py-28">
+      <section className="gradient-hero text-primary-foreground pt-20 pb-32 lg:pt-28 lg:pb-40 relative">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
             Protect What Matters Most<br />
@@ -106,6 +117,26 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Floating Bar */}
+      <div className="container mx-auto px-4 -mt-16 lg:-mt-20 relative z-10 mb-8 max-w-5xl">
+        <div className="bg-card rounded-xl shadow-xl shadow-navy/5 border-2 border-primary/10 p-4 sm:p-5 flex justify-between items-center overflow-x-auto gap-4 sm:gap-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          {quickLinks.map((link, idx) => (
+            <Link key={idx} to={link.link} className="flex flex-col items-center min-w-[60px] sm:min-w-[70px] group flex-shrink-0">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary/5 flex items-center justify-center mb-2 relative group-hover:bg-primary/10 group-hover:scale-105 transition-all outline outline-1 outline-primary/10 group-hover:outline-primary/30">
+                {link.badge && (
+                  <span className={`absolute -top-1.5 -right-2 text-[9px] font-bold px-1.5 py-0.5 rounded-full z-10 shadow-sm ${link.badgeColor}`}>
+                    {link.badge}
+                  </span>
+                )}
+                <link.icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary group-hover:text-primary transition-colors" strokeWidth={1.5} />
+              </div>
+              <p className="text-xs font-bold text-navy group-hover:text-primary transition-colors whitespace-nowrap">{link.label}</p>
+              <p className="text-[10px] text-muted-foreground whitespace-nowrap">{link.sub}</p>
+            </Link>
+          ))}
+        </div>
+      </div>
 
       {/* Products */}
       <section className="py-16 bg-background">
