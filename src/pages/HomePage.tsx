@@ -19,15 +19,37 @@ const whyUs = [
   { icon: CheckCircle, title: "End-to-End Support", desc: "From quotes to claims, we assist you at every step of your insurance journey." },
 ];
 
-const faqCategories = ["General", "Car", "Bike", "Health", "Life", "Term", "Investment", "Business"];
+const faqCategories = ["General", "Car", "Bike", "Life"];
 
 const faqs: Record<string, { q: string; a: string }[]> = {
   "General": [
     { q: "What do you mean by Insurance?", a: "Insurance is a contract which is presented as a policy to be used as a risk management tool to ensure financial protection at the time of crisis. Insurance helps an individual to ensure financial protection against losses that may arise during an unforeseen event. An insurance policy is a contract between an individual (policyholder) and an insurance company (Insurance provider), under which, the individual makes regular payments known as premiums to the insurance company which in return pays the sum assured in case an unforeseen event such as demise of the policyholder, accident, damage to the vehicles or other possessions." },
-    { q: "Why is insurance important?", a: "Insurance provides financial security, helping you pay for medical emergencies, vehicle damage, or secure your family's future in your absence." },
-    { q: "How Does Insurance Work?", a: "When you buy a policy, you pay regular premiums. In return, the insurer promises to pay a certain amount if a covered event occurs." },
+    { q: "Why is insurance important?", a: "Unfortunate events like accidents, illnesses, and natural disasters come without any warning and thus it is necessary for you to keep yourself and your loved ones shielded against such unforeseen happenings. One of the best and simplest ways of keeping yourself secured against these contingent events which may cause a financial loss is buying an insurance policy." },
+    { q: "How Does Insurance Work?", a: "As mentioned earlier, insurance is a legal contract between the policyholder and the insurance provider. The insurance policy carries all the details about the aspects and conditions under which the insurance provider will pay out the insurance amount to the policyholder or their nominee in case an unforeseen event occurs. Insurance is a financial tool which helps in ensuring financial protection of yourself and your family. Generally the person who has purchased the policy also known as policyholder has to pay premiums for the coverage available under the insurance policy. Any person can seek insurance from an insurance company." },
     { q: "What are the types of insurance available?", a: "The main types include Life, Health, Motor, Travel, and Property insurance." },
     { q: "How to make a claim in insurance?", a: "To make a claim, inform your insurer immediately, fill out the claim form, and submit the required documents." },
+  ],
+  "Car": [
+    { q: "What is a car insurance policy?", a: "It is an agreement between an insurance company and a car owner under which the former provides an insurance cover to the policyholder for financial damages incurred by his/her car in unforeseen events. Depending on the coverage, there are three types of car insurance plans - third party , standalone own-damage and comprehensive insurance. It's renewal online process provides instant e-Policy." },
+    { q: "Why should I buy car insurance?", a: "There are a number of benefits of owning four wheeler insurance. Firstly, it helps you meet the legal requirement of owning at least a third party cover. Moreover, an insurance policy helps you meet financial liabilities that may arise towards a third party or own damages to your car due to a road accident or any other unfortunate event." },
+    { q: "Is car insurance mandatory in India?", a: "As per the Indian Motor Tariff, every car owner in the country is compulsorily required to own at least a third party cover. Absence of a valid plan is a punishable offence which attracts a fine of Rs. 2,000 and/or imprisonment of up to 3 months for the first offence." },
+    { q: "How is car insurance premium calculated?", a: "The premium price of third-party car insurance plans is determined by the IRDAI, whereas the premium for standalone own-damage and comprehensive plans vary from insurance company to insurance company." },
+    { q: "Can car insurance be transferred to the new owner at the purchase of a second hand four wheeler?", a: "Yes, the four wheeler insurance can be transferred from the old owner to the new owner in case the sale of a second-hand car. As per the Indian Motor Tariff, the policy transfer should be completed within 14 days from the car’s purchase date." },
+  ],
+  "Bike": [
+    { q: "What is a two wheeler insurance policy?", a: "A two wheeler insurance policy is an agreement between an insurance company and a bike owner wherein the insurance provider promises to cover any damage or loss sustained by the insured bike due to an accident, theft, fire, etc., based on the opted policy. Generally, the contract between insured and insurer is of a year which should be renewed every year." },
+    { q: "Why should I purchase a two wheeler insurance policy?", a: "No matter which bike you own, you need to comply with some laws to ride it. To carry a bike insurance policy is the most important rule to drive a motorcycle / scooter as you need to adhere to the legal requirement of carrying at least a third party cover. Besides this, a policy also covers your financial liabilities which you may incur towards a third party or own damages sustained by your bike due to an accident or any unfortunate incident." },
+    { q: "What are the different types of bike insurance plan?", a: "There are three types of two wheeler insurance plans such as third party two wheeler plan, standalone own damage, and comprehensive insurance plan." },
+    { q: "What if my bike insurance policy gets expired?", a: "Every two-wheeler insurance policy has a date of expiry before which you should renew it to continue to avail it. However, if you fail to renew the policy on time, you still can renew it within the 90 days grace period from the expiry date. However, bike insurance renewal process is not possible after this period. As a result, you will have to buy a new insurance policy in that case." },
+    { q: "Which company provides the best insurance for bike in India?", a: "There are numerous parameters to select an insurance company to insure your bike. The Claim Settlement Ratio (CSR) is one of the most important parameters to gauge the efficiency of an insurance provider. The CSR is a ratio of claims settled by the insurance company out of the total claims received by the insurer during the financial year. In the financial year 2019-20, the companies with the highest claim settlement ratio are IFFCO Tokio General Insurance (95.30%), Royal Sundaram General Insurance (92.66%), and Oriental Insurance Company (91.76%) with which the IFFCO Tokio can be considered the best two wheeler insurance company in India for the year 2023." },
+  ],
+  "Life": [
+    { q: "What is Life Insurance ?", a: "Life insurance is an insurance cover which provides a sum assured to the family of the assured in the event of sudden death. The plan also offers a survival benefit to the assured if he/she survives the policy term." },
+    { q: "What are the factors that affect the calculation of a life insurance plan premium?", a: "Life insurance premium depends on numerous factors including policyholder's age, sum assured, gender, lifestyle, job, medical history, type of policy, tenure, and riders (if any). " },
+    { q: "Why should I purchase life insurance?", a: "Life insurance helps you attain financial security that ensures your family’s life goals are not affected. Life insurance also offers tax benefits on the premiums that a policyholder pays for their life insurance. Moreover, life insurance plans are affordable and the policyholder can purchase additional benefits by purchasing a rider to enhance their life cover." },
+    { q: "Which is the best life insurance plan?", a: "Different life insurance plans have different features and advantages. Thus, the definition of the best plan varies from individual to individual. The best life insurance plan is the one which best meets your requirements and budget. However, among all the different types of life insurance plans, the most preferred type of life insurance plan is Term Insurance Plan because it provides high coverage at nominal premium." },
+    { q: "What are the factors which I should consider before buying a life insurance policy?", a: "There are many factors that you should consider while purchasing a life insurance plan. These includes your financial goals, income, existing liabilities, and daily expenses. After analysing all these factors, you can compare different types of life insurance plans like term plans, whole life insurance, child plans, retirement plans, and others to buy the one that suits your needs. " },
+
   ]
 };
 
@@ -174,8 +196,8 @@ export default function HomePage() {
                   key={cat}
                   onClick={() => setActiveTab(cat)}
                   className={`whitespace-nowrap pb-3 text-sm sm:text-base font-medium transition-all relative -mb-[1px] ${activeTab === cat
-                      ? "text-primary border-b-2 border-primary"
-                      : "text-muted-foreground hover:text-foreground border-b-2 border-transparent"
+                    ? "text-primary border-b-2 border-primary"
+                    : "text-muted-foreground hover:text-foreground border-b-2 border-transparent"
                     }`}
                 >
                   {cat}

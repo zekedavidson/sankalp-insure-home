@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Car, CheckCircle, ArrowRight, AlertCircle } from "lucide-react";
+import { Car, CheckCircle, ArrowRight, AlertCircle, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -73,6 +73,33 @@ const twoPlan = [
     premium: "From ₹1,500/yr",
     settlement: "97.70%",
     features: ["Comprehensive cover", "Zero dep option", "Pillion rider cover add-on"],
+  },
+];
+
+const reasonsToBuy = [
+  {
+    title: "Legal Compliance",
+    desc: "As mandated by the Motor Vehicles Act, 1988, having a valid motor insurance policy is a legal requirement in India. Driving a vehicle on roads without motor insurance can result in fines, legal penalties, and even vehicle confiscation.",
+  },
+  {
+    title: "Financial Protection",
+    desc: "Motor insurance can also provide essential financial protection against various risks, including accidents, theft, vandalism, etc. In the event of an unfortunate incident, the insurance cover helps mitigate financial losses, ensuring that you don't have to bear the entire burden of repair costs or compensation payments out of pocket.",
+  },
+  {
+    title: "Third-Party Liability Coverage",
+    desc: "Third-party liability coverage in motor insurance policies protects you from legal liabilities arising from bodily injury or death caused to third parties by your vehicle. Without this type of auto insurance, you could be held personally liable for substantial compensation amounts, potentially leading to financial ruin.",
+  },
+  {
+    title: "Protection for Your Vehicle",
+    desc: "An Own Damage (OD) motor insurance policy can cover your vehicle against damages resulting from accidents, theft, natural disasters, and similar unforeseen events. Whether it's repairing dents and scratches or replacing stolen parts, having comprehensive insurance coverage ensures your vehicle remains roadworthy.",
+  },
+  {
+    title: "Personal Accident Cover",
+    desc: "You can also buy motor insurance policies that include personal accident cover for the owner-driver. These plans provide financial compensation in the event of accidental death or disability resulting from a road accident. Knowing that you and your loved ones are financially protected against unforeseen accidents can offer peace of mind.",
+  },
+  {
+    title: "Optional Add-On Covers",
+    desc: "Insurers offer a range of optional add-on covers you can purchase to enhance insurance protection. These add-ons may include zero depreciation cover, engine protection, roadside assistance, and more, providing additional benefits tailored to your specific needs and preferences.",
   },
 ];
 
@@ -178,6 +205,38 @@ export default function MotorInsurancePage() {
           <p className="text-xs text-muted-foreground mt-6 text-center">
             * Third Party premiums are fixed by IRDAI. Comprehensive premiums are indicative and subject to vehicle details and underwriting.
           </p>
+        </div>
+      </section>
+
+      <section className="py-12 bg-muted">
+        <div className="container mx-auto flex items-center">
+          <div>
+            <h2 className="text-2xl font-bold text-navy text-center">What is a Motor Insurance Policy?</h2>
+            <p className="text-muted-foreground text-md pt-3 text-center">A motor insurance policy, also known as vehicle insurance, is a contractual agreement between an insurance provider and a vehicle owner (you) wherein the insurer agrees to provide financial protection against specified risks in exchange for a premium. In India, it is mandatory for all vehicles to have at least a basic level of motor insurance coverage (third-party) under the Motor Vehicles Act, 1988.</p>
+            <p className="text-muted-foreground text-md pt-3 text-center">Knowing the finer details of motor insurance policies can help you select the right coverage tailored to your needs and circumstances. You can ensure adequate protection for your vehicle and financial security in the face of unforeseen events on the road.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-bold text-navy mb-4">Why Should You Buy a Motor Vehicle Insurance Policy?</h2>
+            <p className="text-muted-foreground text-sm max-w-4xl mx-auto">
+              While buying a motor insurance policy is a legal obligation, it is also a practical necessity and a wise financial decision. Here are several compelling reasons why you should consider purchasing a motor insurance policy:
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8 gap-x-12">
+            {reasonsToBuy.map((reason, idx) => (
+              <div key={idx} className="flex gap-4">
+                <ShieldCheck className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="font-semibold text-navy mb-2">{reason.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{reason.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </Layout>
