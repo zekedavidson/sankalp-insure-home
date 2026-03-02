@@ -34,11 +34,10 @@ export default function Header() {
             <Link
               key={link.href}
               to={link.href}
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                location.pathname === link.href
-                  ? "text-gold bg-navy-light"
-                  : "text-primary-foreground/80 hover:text-gold hover:bg-navy-light"
-              }`}
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${location.pathname === link.href
+                ? "text-gold bg-navy-light"
+                : "text-primary-foreground/80 hover:text-gold hover:bg-navy-light"
+                }`}
             >
               {link.label}
             </Link>

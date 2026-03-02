@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Shield, Car, CheckCircle, Lock, CreditCard, Award, ArrowRight, Star, Users, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Layout from "@/components/Layout";
 
 const trustBadges = [
@@ -17,13 +19,27 @@ const whyUs = [
   { icon: CheckCircle, title: "End-to-End Support", desc: "From quotes to claims, we assist you at every step of your insurance journey." },
 ];
 
+const faqCategories = ["General", "Car", "Bike", "Health", "Life", "Term", "Investment", "Business"];
+
+const faqs: Record<string, { q: string; a: string }[]> = {
+  "General": [
+    { q: "What do you mean by Insurance?", a: "Insurance is a contract which is presented as a policy to be used as a risk management tool to ensure financial protection at the time of crisis. Insurance helps an individual to ensure financial protection against losses that may arise during an unforeseen event. An insurance policy is a contract between an individual (policyholder) and an insurance company (Insurance provider), under which, the individual makes regular payments known as premiums to the insurance company which in return pays the sum assured in case an unforeseen event such as demise of the policyholder, accident, damage to the vehicles or other possessions." },
+    { q: "Why is insurance important?", a: "Insurance provides financial security, helping you pay for medical emergencies, vehicle damage, or secure your family's future in your absence." },
+    { q: "How Does Insurance Work?", a: "When you buy a policy, you pay regular premiums. In return, the insurer promises to pay a certain amount if a covered event occurs." },
+    { q: "What are the types of insurance available?", a: "The main types include Life, Health, Motor, Travel, and Property insurance." },
+    { q: "How to make a claim in insurance?", a: "To make a claim, inform your insurer immediately, fill out the claim form, and submit the required documents." },
+  ]
+};
+
 export default function HomePage() {
+  const [activeTab, setActiveTab] = useState("General");
+  const currentFaqs = faqs[activeTab] || faqs["General"];
+
   return (
     <Layout>
       {/* Hero */}
       <section className="gradient-hero text-primary-foreground py-20 lg:py-28">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-gold text-sm font-semibold tracking-widest uppercase mb-4">IRDAI Licensed Insurance Broker</p>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
             Protect What Matters Most<br />
             <span className="text-gold">Life & Motor Insurance</span> Made Simple
@@ -35,14 +51,14 @@ export default function HomePage() {
           {/* Two primary CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Link to="/get-quote?type=life">
-              <Button size="lg" className="gradient-gold text-navy font-bold border-0 px-8 py-4 text-base shadow-gold hover:opacity-90 w-full sm:w-auto">
+              <Button size="lg" className="gradient-gold text-navy font-bold border-0 px-8 py-4 text-base shadow-gold hover:opacity-80 w-full sm:w-auto">
                 <Shield className="w-5 h-5 mr-2" />
                 Get Life Insurance Quote
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
             <Link to="/get-quote?type=motor">
-              <Button size="lg" variant="outline" className="border-gold/60 text-gold hover:bg-gold hover:text-navy px-8 py-4 text-base bg-transparent w-full sm:w-auto">
+              <Button size="lg" variant="outline" className="gradient-gold text-navy font-bold border-0 px-8 py-4 text-base shadow-gold hover:opacity-80 w-full sm:w-auto">
                 <Car className="w-5 h-5 mr-2" />
                 Get Motor Insurance Quote
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -140,6 +156,55 @@ export default function HomePage() {
               </Card>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-navy mb-3">Frequently Asked Questions About Insurance</h2>
+            <p className="text-muted-foreground">Know why did they choose Sankalp</p>
+          </div>
+
+          <div className="flex overflow-x-auto border-b border-border/50 mb-8 sm:justify-center">
+            <div className="flex gap-x-6 px-1">
+              {faqCategories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveTab(cat)}
+                  className={`whitespace-nowrap pb-3 text-sm sm:text-base font-medium transition-all relative -mb-[1px] ${activeTab === cat
+                      ? "text-primary border-b-2 border-primary"
+                      : "text-muted-foreground hover:text-foreground border-b-2 border-transparent"
+                    }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {currentFaqs.map((faq, index) => (
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className="border rounded-2xl px-2 sm:px-6 bg-card data-[state=open]:shadow-md transition-all border-b"
+              >
+                <AccordionTrigger className="hover:no-underline py-4 sm:py-5 text-left text-sm sm:text-base font-bold text-foreground">
+                  <div className="flex flex-1 items-center gap-4 pr-4">
+                    <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-muted text-foreground text-sm font-semibold border">
+                      {index + 1}
+                    </span>
+                    <span className="text-left leading-tight">{faq.q}</span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground leading-relaxed pl-[3.25rem] pr-4 pb-5">
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
 
